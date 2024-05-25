@@ -1,0 +1,59 @@
+@model IEnumerable<EmployeeCensus.ViewModels.EmployeeViewModel>
+
+@{
+    ViewData["Title"] = "Employees";
+    bool isAuthenticated = User.Identity.IsAuthenticated;
+}
+
+<h1>Employees</h1>
+
+@if (!isAuthenticated)
+{
+    <div class="alert alert-info">
+        To edit employee information, please log in to your account.
+    </div>
+}
+
+<form method="get" class="mb-3 d-flex align-items-center">
+    <div class="col-md-3 me-2">
+        <input type="text" name="search" placeholder="Search by first or last name" class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-primary">Search</button>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Age</th>
+            <th>Gender</th>
+            <th>Department</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var employee in Model)
+        {
+            <tr>
+                <td>@employee.FirstName</td>
+                <td>@employee.LastName</td>
+                <td>@employee.Age</td>
+                <td>@employee.Gender</td>
+                <td>@employee.DepartmentName</td>
+                <td>
+                    @if (isAuthenticated)
+                    {
+                        <a asp-action="Edit" asp-route-id="@employee.EmployeeId" class="btn btn-sm btn-primary">Edit</a>
+                        <a asp-action="Delete" asp-route-id="@employee.EmployeeId" class="btn btn-sm btn-danger">Delete</a>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@if (isAuthenticated)
+{
+    <a asp-action="Add" class="btn btn-primary">Add Employee</a>
+}

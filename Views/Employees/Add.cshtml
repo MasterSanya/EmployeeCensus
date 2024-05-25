@@ -1,0 +1,47 @@
+@model EmployeeCensus.ViewModels.EmployeeViewModel
+
+@{
+    ViewData["Title"] = "Add Employee";
+}
+
+<h1>Add Employee</h1>
+
+<form asp-action="Add" method="post">
+    <div class="form-group">
+        <label asp-for="FirstName"></label>
+        <input asp-for="FirstName" class="form-control" />
+        <span asp-validation-for="FirstName" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="LastName"></label>
+        <input asp-for="LastName" class="form-control" />
+        <span asp-validation-for="LastName" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Age"></label>
+        <input asp-for="Age" class="form-control" />
+        <span asp-validation-for="Age" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Gender"></label>
+        <select asp-for="Gender" class="form-control">
+            <option value="Female">Female</option>
+            <option value="Male">Male</option>
+        </select>
+        <span asp-validation-for="Gender" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="DepartmentId">Department</label>
+        <select asp-for="DepartmentId" class="form-control" asp-items="Model.Departments"></select>
+        <span asp-validation-for="DepartmentId" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label>Programming Languages</label>
+        <select multiple asp-for="SelectedProgrammingLanguages" class="form-control"
+            asp-items="Model.ProgrammingLanguages"></select>
+    </div>
+    <div class="mt-3 d-flex justify-content-start">
+        <button type="submit" class="btn btn-primary me-2">Add</button>
+        <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+    </div>
+</form>

@@ -1,0 +1,26 @@
+@model IEnumerable<EmployeeCensus.Models.User>
+
+@{
+    ViewData["Title"] = "User List";
+}
+
+<h1>User List</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Username</th>
+            <th>Last Action Time</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in Model)
+        {
+            <tr>
+                <td>@user.Username</td>
+                <td>@user.LastActionTime</td>
+            </tr>
+        }
+    </tbody>
+</table>
+<a asp-action="Add" class="btn btn-primary">Add New User</a>
