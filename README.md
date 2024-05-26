@@ -13,7 +13,7 @@ This is an ASP.NET Core project for managing employee records. Follow the instru
 1. **Clone the repository**:
     ```sh
     git clone https://github.com/MasterSanya/EmployeeCensus.git
-    cd yourrepository
+    cd EmployeeCensus
     ```
 
 2. **Configure the database**:
