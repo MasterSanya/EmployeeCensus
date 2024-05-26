@@ -9,7 +9,7 @@
 <form asp-action="Add" method="post">
     <div class="form-group">
         <label asp-for="FirstName"></label>
-        <input asp-for="FirstName" class="form-control" />
+        <input asp-for="FirstName" class="form-control" id="firstName" />
         <span asp-validation-for="FirstName" class="text-danger"></span>
     </div>
     <div class="form-group">
@@ -45,3 +45,22 @@
         <a asp-action="Index" class="btn btn-secondary">Back to List</a>
     </div>
 </form>
+
+@section Scripts {
+    <script>
+        $(function () {
+            $("#firstName").autocomplete({
+                source: function (request, response) {
+                    $.ajax({
+                        url: '@Url.Action("GetEmployeeNames", "Employees")',
+                        data: { term: request.term },
+                        success: function (data) {
+                            response(data);
+                        }
+                    });
+                },
+                minLength: 2
+            });
+        });
+    </script>
+}

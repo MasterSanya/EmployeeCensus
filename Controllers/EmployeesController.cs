@@ -113,6 +113,19 @@ namespace EmployeeCensus.Controllers
             return View(viewModel);
         }
 
+        // Метод для получения имен сотрудников для автокомплита
+        [HttpGet]
+        public async Task<IActionResult> GetEmployeeNames(string term)
+        {
+            var names = await _context.Employees
+                .Where(e => e.FirstName.Contains(term))
+                .Select(e => e.FirstName)
+                .Distinct()
+                .ToListAsync();
+
+            return Json(names);
+        }
+
         // Метод для отображения страницы редактирования сотрудника (только для авторизованных пользователей)
         [Authorize(Policy = "RequireAuthenticatedUser")]
         public async Task<IActionResult> Edit(int id)
