@@ -4,7 +4,7 @@ This is an ASP.NET Core project for managing employee records. Follow the instru
 
 ## Prerequisites
 
-- [.NET SDK 6.0](https://dotnet.microsoft.com/download/dotnet/6.0)
+- [.NET 7.0 SDK](https://dotnet.microsoft.com/download/dotnet/7.0)
 - [SQL Server](https://www.microsoft.com/en-us/sql-server/sql-server-downloads)
 - [Git](https://git-scm.com/downloads)
 
